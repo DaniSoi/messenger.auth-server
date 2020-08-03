@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: messenger.auth-server-deployment
+  labels:
+    app: messenger.auth-server
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: messenger.auth-server
+  template:
+    metadata:
+      labels:
+        app: messenger.auth-server
+    spec:
+      terminationGracePeriodSeconds: 30
+      containers:
+        - name: auth-server
+          image: danisoi/messenger.auth-server:latest
+          imagePullPolicy: "Always"
+          ports:
+            - containerPort: 4000
+        - name: db
+          image: mongo
+          ports:
+            - containerPort: 27017
