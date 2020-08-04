@@ -1,9 +1,11 @@
 const mongoose = require('mongoose');
 
 async function connectDB () {
+  const { MONGO_HOST, MONGO_PORT, MONGOLAB_URI } = process.env;
+  const MONGO_URI = `mongodb://${MONGO_HOST || 'localhost'}:${MONGO_PORT || '27017'}/messenger-app`;
   try {
     const { connection } = await mongoose.connect(
-      process.env.MONGO_URI || process.env.MONGOLAB_URI || process.env.DB_URL,
+      MONGOLAB_URI || MONGO_URI,
       {
         useNewUrlParser: true,
         useUnifiedTopology: true,

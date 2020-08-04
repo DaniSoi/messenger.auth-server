@@ -1,7 +1,7 @@
 const morgan = require('morgan');
 const express = require('express');
 const cors = require('cors');
-const { API_PREFIX, IS_PROD, CLIENT_ORIGIN } = require('./config');
+const { PATHS_PREFIX, IS_PROD, CLIENT_ORIGIN } = require('./config');
 const routes = require('./routes');
 const { errorHandler500 } = require('./middleware');
 const connectDB = require('./db');
@@ -19,7 +19,7 @@ app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-app.use(API_PREFIX, routes.apiRouter);
+app.use(PATHS_PREFIX, routes.apiRouter);
 
 app.use(errorHandler500);
 
