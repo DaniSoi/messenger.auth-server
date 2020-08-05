@@ -20,9 +20,9 @@ app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-app.use(healthCheckMiddleware());
+app.use(routes.apiRouter);
 
-app.use(PATHS_PREFIX, routes.apiRouter);
+app.use(healthCheckMiddleware());
 
 app.use(errorHandler500);
 
