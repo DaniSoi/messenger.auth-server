@@ -22,7 +22,7 @@ app.use(express.json());
 
 app.use(routes.apiRouter);
 
-app.use(healthCheckMiddleware());
+app.use('/healthcheck', healthCheckMiddleware());
 
 app.use(errorHandler500);
 
