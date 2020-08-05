@@ -11,7 +11,7 @@ connectDB();
 
 const app = express();
 
-!IS_PROD &&
+// !IS_PROD &&
 app.use(morgan('dev'));
 
 app.use(cors());
