@@ -4,6 +4,7 @@ const cors = require('cors');
 const { PATHS_PREFIX, IS_PROD, CLIENT_ORIGIN } = require('./config');
 const routes = require('./routes');
 const { errorHandler500 } = require('./middleware');
+const healthCheckMiddleware = require('express-healthcheck');
 const connectDB = require('./db');
 
 connectDB();
@@ -18,6 +19,8 @@ app.use(cors());
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+
+app.use(healthCheckMiddleware());
 
 app.use(PATHS_PREFIX, routes.apiRouter);
 
