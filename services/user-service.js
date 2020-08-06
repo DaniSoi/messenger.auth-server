@@ -1,7 +1,7 @@
 const bcrypt = require('bcrypt');
 const crypto = require('crypto');
 const { userModel } = require('../models');
-const { SMTP_USER, CLIENT_ORIGIN } = require('../config');
+const { SMTP_USER, CLIENT_URL } = require('../config');
 const emailService = require('./email-service');
 
 async function register (userDetails) {
@@ -37,7 +37,7 @@ async function register (userDetails) {
 
 async function sendConfirmEmail (email, firstName, token) {
   try {
-    const confirmUrl = `${CLIENT_ORIGIN}/confirm/${token}`;
+    const confirmUrl = `http://${CLIENT_URL || 'localhost:5000'}/confirm/${token}`;
     const emailTemplate = {
       from: SMTP_USER,
       to: email,
