@@ -37,7 +37,7 @@ async function register (userDetails) {
 
 async function sendConfirmEmail (email, firstName, token) {
   try {
-    const confirmUrl = `http://${CLIENT_URL || 'localhost:5000'}/confirm/${token}`;
+    const confirmUrl = `http://${CLIENT_URL || 'localhost:3000'}/confirm/${token}`;
     const emailTemplate = {
       from: SMTP_USER,
       to: email,
